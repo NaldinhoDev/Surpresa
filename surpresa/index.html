@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surpresa ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    body {
+      background-image: url('Downloads/fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .texto {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background-color: deeppink;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 20px;
+      border-radius: 10px;
+      margin: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 500px) {
+      .texto {
+        font-size: 22px;
+      }
+
+      button {
+        font-size: 18px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="etapa">
+    <div class="box">
+      <label class="texto" id="texto">Você sabia que é muito linda? 💖</label><br>
+      <button onclick="proximaEtapa()">Sim</button>
+      <button onclick="nega()">Não</button>
+    </div>
+  </div>
+
+  <script>
+    const mensagens = [
+      "E que eu te amo demais? 💘",
+      "E durante todo esse tempo eu fui o homem mais feliz do mundo? 😊",
+      "Então, como esse dia é especial... 🎉",
+      "Eu preparei isso pra você ❤️"
+    ];
+
+    const links = [
+      null,
+      null,
+      null,
+      "https://open.spotify.com/playlist/6LkT2agrHgYUu3YNfTAU8r?si=3831ca73f2ef490f&pt=51aecb3a78635305fdce3183faeea3ed"
+    ];
+
+    let etapa = 0;
+
+    function proximaEtapa() {
+      etapa++;
+      const textoEl = document.getElementById('texto');
+      const container = document.getElementById('etapa');
+
+      if (etapa < mensagens.length - 1) {
+        textoEl.innerText = mensagens[etapa];
+      } else if (etapa === mensagens.length - 1) {
+        textoEl.innerText = mensagens[etapa];
+        const btn = document.createElement("button");
+        btn.innerHTML = <a href="${links[etapa]}" target="_blank">Surpresa</a>;
+        container.querySelector(".box").appendChild(btn);
+        // Remove outros botões
+        const botoes = container.querySelectorAll("button");
+        botoes.forEach((b, i) => { if (i < botoes.length - 1) b.remove(); });
+      }
+    }
+
+    function nega() {
+      alert("Resposta errada! 😜 Tente de novo.");
+    }
+  </script>
+
+</body>
+</html>
