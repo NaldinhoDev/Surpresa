@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surpresa ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    body {
+      background-image: url('fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 3vw 5vw;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .texto {
+      font-size: 5vw;
+      max-font-size: 28px; /* não existe nativo, vai controlar com media query */
+      margin-bottom: 3vw;
+      word-wrap: break-word;
+    }
+
+    button {
+      background-color: deeppink;
+      color: white;
+      border: none;
+      padding: 1.2vw 5vw;
+      font-size: 4vw;
+      border-radius: 12px;
+      margin: 1.5vw 1vw;
+      cursor: pointer;
+      transition: 0.3s;
+      min-width: 120px;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 500px) {
+      .texto {
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        min-width: 100px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .texto {
+        font-size: 18px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 8px 15px;
+        min-width: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="etapa">
+    <div class="box">
+      <label class="texto" id="texto">Você sabia que é muito linda? 💖</label><br />
+      <button onclick="proximaEtapa()">Sim</button>
+      <button onclick="nega()">Não</button>
+    </div>
+  </div>
+
+  <script>
+    const mensagens = [
+      "E que eu te amo demais? 💘",
+      "E durante todo esse tempo eu fui o homem mais feliz do mundo? 😊",
+      "Então, como esse dia é especial... 🎉",
+      "Eu preparei isso pra você ❤️"
+    ];
+
+    const links = [
+      null,
+      null,
+      null,
+      "https://open.spotify.com/playlist/6LkT2agrHgYUu3YNfTAU8r?si=3831ca73f2ef490f&pt=51aecb3a78635305fdce3183faeea3ed"
+    ];
+
+    let etapa = 0;
+
+    function proximaEtapa() {
+      etapa++;
+      const textoEl = document.getElementById('texto');
+      const container = document.getElementById('etapa');
+
+      if (etapa < mensagens.length - 1) {
+        textoEl.innerText = mensagens[etapa];
+      } else if (etapa === mensagens.length - 1) {
+        textoEl.innerText = mensagens[etapa];
+
+        // Remove todos os botões antes de criar o "Surpresa"
+        container.querySelectorAll("button").forEach(b => b.remove());
+
+        // Cria botão surpresa estilizado
+        const btn = document.createElement("button");
+        btn.innerText = "Surpresa";
+        btn.onclick = () => {
+          window.open(links[etapa], "_blank", "noopener");
+        };
+        container.querySelector(".box").appendChild(btn);
+      }
+    }
+
+    function nega() {
+      alert("Resposta errada! 😜 Tente de novo.");
+    }
+  </script>
+
+</body>
+</html>
